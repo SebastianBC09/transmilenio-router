@@ -1,0 +1,142 @@
+Zone_ID,Zone_Name,Station_Name
+A,Caracas,AV. Jiménez - Caracas
+A,Caracas,Calle 22
+A,Caracas,Calle 34
+A,Caracas,Calle 45 - American School Way
+A,Caracas,Marly
+A,Caracas,Calle 57
+A,Caracas,Flores – Areandina
+A,Caracas,Calle 76 - San Felipe
+B,Autopista Norte,Portal Norte – Unicervantes
+B,Autopista Norte,Calle 187
+B,Autopista Norte,Toberin - Foundever
+B,Autopista Norte,Calle 161
+B,Autopista Norte,Mazurén
+B,Autopista Norte,Calle 146
+B,Autopista Norte,Calle 142
+B,Autopista Norte,Alcalá – Colegio S. Tomás Dominicos
+B,Autopista Norte,Prado
+B,Autopista Norte,Calle 127
+B,Autopista Norte,Pepe Sierra
+B,Autopista Norte,Calle 106 - Maletas Explora
+B,Autopista Norte,Calle 100 - Marketmedios
+B,Autopista Norte,Virrey
+B,Autopista Norte,Calle 85
+B,Autopista Norte,Héroes
+B,Autopista Norte,Terminal
+C,Suba,Portal Suba
+C,Suba,La Campiña
+C,Suba,Suba - TV. 91
+C,Suba,21 Ángeles
+C,Suba,Gratamira
+C,Suba,Suba - AV. Boyacá
+C,Suba,Niza - Calle 127
+C,Suba,Humedal Córdoba
+C,Suba,Suba - Calle 116
+C,Suba,Puentelargo
+C,Suba,Suba - Calle 100
+C,Suba,Suba - Calle 95
+C,Suba,Rionegro
+C,Suba,San Martín
+D,Calle 80,Portal 80
+D,Calle 80,Quirigua
+D,Calle 80,Carrera 90
+D,Calle 80,AV. Cali
+D,Calle 80,Granja - Kr 77
+D,Calle 80,Minuto de Dios
+D,Calle 80,AV. Boyacá
+D,Calle 80,Ferias
+D,Calle 80,AV. 68
+D,Calle 80,Carrera 53
+D,Calle 80,Carrera 47
+D,Calle 80,Escuela Militar
+D,Calle 80,Polo - FINCOMERCIO
+E,NQS Central,La Castellana
+E,NQS Central,Calle 75 - Zona M
+E,NQS Central,AV. Chile
+E,NQS Central,7 de Agosto
+E,NQS Central,Movistar Arena
+E,NQS Central,Campín - UAN
+E,NQS Central,Universidad Nacional
+E,NQS Central,AV. ElDorado
+E,NQS Central,CAD
+E,NQS Central,Paloquemao
+E,NQS Central,Ricaurte - NQS
+E,NQS Central,Tygua - San José
+E,NQS Central,Guatoque - Veraguas
+F,Americas,Portal Américas
+F,Americas,Biblioteca Tintal
+F,Americas,Transversal 86
+F,Americas,Banderas
+F,Americas,Mandalay
+F,Americas,AV. Américas - AV. Boyacá
+F,Americas,Marsella
+F,Americas,Pradera - Plaza Central
+F,Americas,Distrito Grafiti
+F,Americas,Puente Aranda
+F,Americas,Carrera 43 - Comapan
+F,Americas,CDS - Carrera 32
+F,Americas,Ricaurte - CL 13
+F,Americas,San Facon Carrera 22
+F,Americas,Zona Industrial
+F,Americas,De La Sabana
+G,NQS Sur,Portal Sur - JFK Coop. Financiera
+G,NQS Sur,Perdomo
+G,NQS Sur,CC Paseo Villa del Río - Madelena
+G,NQS Sur,Sevillana
+G,NQS Sur,Venecia
+G,NQS Sur,Alquería
+G,NQS Sur,General Santander
+G,NQS Sur,NQS - Calle 38A S
+G,NQS Sur,NQS - Calle 30 S
+G,NQS Sur,Bosa
+G,NQS Sur,Comuneros
+G,NQS Sur,Santa Isabel
+G,NQS Sur,San Mateo - CC Unisur
+G,NQS Sur,Terreros - Hospital Cardio Vascular
+G,NQS Sur,León XIII
+G,NQS Sur,La Despensa
+H,Caracas Sur,Portal Tunal
+H,Caracas Sur,Parque
+H,Caracas Sur,Biblioteca
+H,Caracas Sur,Portal Usme
+H,Caracas Sur,Molinos
+H,Caracas Sur,Consuelo
+H,Caracas Sur,Socorro
+H,Caracas Sur,Santa Lucía
+H,Caracas Sur,Danubio
+H,Caracas Sur,Calle 40 Sur
+H,Caracas Sur,Quiroga
+H,Caracas Sur,Olaya
+H,Caracas Sur,Restrepo
+H,Caracas Sur,Fucha
+H,Caracas Sur,Nariño
+H,Caracas Sur,Hortúa
+J,Eje Ambiental,AV. Jiménez - CL 13
+J,Eje Ambiental,Museo del Oro
+J,Eje Ambiental,Las Aguas - Centro Colombo Americano
+K,Calle 26,Portal El Dorado – C.C. Nuestro Bogotá
+K,Calle 26,Modelia
+K,Calle 26,Normandía
+K,Calle 26,Avenida Rojas - UNISALESIANA
+K,Calle 26,El Tiempo – Cámara de Comercio de Bogotá
+K,Calle 26,Salitre - El Greco
+K,Calle 26,CAN
+K,Calle 26,Gobernación
+K,Calle 26,Quinta Paredes
+K,Calle 26,Corferias
+K,Calle 26,Ciudad Universitaria - Lotería de Bogotá
+K,Calle 26,Concejo de Bogotá
+K,Calle 26,Centro Memoria
+K,Calle 26,Universidades – CityU
+L,Carrera 10,Portal 20 de Julio
+L,Carrera 10,Country Sur
+L,Carrera 10,AV. 1 Mayo
+L,Carrera 10,Ciudad Jardín - UAN
+L,Carrera 10,Policarpa
+L,Carrera 10,Bicentenario
+L,Carrera 10,San Victorino
+L,Carrera 10,Las Nieves
+L,Carrera 10,San Diego
+L,Carrera 10,San Bernardo
+M,Carrera 7,Museo Nacional
