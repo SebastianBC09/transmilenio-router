@@ -13,6 +13,7 @@ import networkx as nx
 from networkx.algorithms.shortest_paths.generic import shortest_path
 from networkx.exception import NetworkXNoPath
 
+
 @dataclass
 class RouteResult:
     origin: str
@@ -43,7 +44,14 @@ def find_route(G: nx.MultiDiGraph, origin: str, destination: str) -> RouteResult
         )
     if destination not in G:
         return RouteResult(
-            origin, destination, [], 0, [], [], False, f"Station not found: {destination}",
+            origin,
+            destination,
+            [],
+            0,
+            [],
+            [],
+            False,
+            f"Station not found: {destination}",
         )
     if origin == destination:
         return RouteResult(origin, destination, [origin], 0, [], [], True)
@@ -52,7 +60,14 @@ def find_route(G: nx.MultiDiGraph, origin: str, destination: str) -> RouteResult
         path = shortest_path(G, source=origin, target=destination, weight="weight")
     except NetworkXNoPath:
         return RouteResult(
-            origin, destination, [], 0, [], [], False, "No path found between these stations.",
+            origin,
+            destination,
+            [],
+            0,
+            [],
+            [],
+            False,
+            "No path found between these stations.",
         )
 
     # Identify which routes are used along the path and where transfers occur
