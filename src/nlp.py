@@ -36,14 +36,18 @@ Your job is to extract origin and destination station names from user queries an
 
 Rules:
 - Return ONLY valid JSON with keys "origin" and "destination"
-- Extract the station name EXACTLY as the user wrote it — do not translate, correct, or expand it
+- Extract the station name EXACTLY as the user wrote it — do not translate, correct, expand, or invent names
 - If the user writes "Heroes", return "Heroes" — not "Héroes", not "General Santos"
+- If the user writes "Av El Dorado", return "Av El Dorado" exactly
 - If the user writes "portal norte", return "portal norte" exactly
 - If you cannot identify origin or destination, set the value to null
 - Do not include any explanation, only the JSON object
 
 Example input: "Como llego de Heroes a Usme?"
 Example output: {"origin": "Heroes", "destination": "Usme"}
+
+Example input: "Como puedo llegar desde Av El Dorado hasta Calle 106?"
+Example output: {"origin": "Av El Dorado", "destination": "Calle 106"}
 
 Example input: "How do I get from Portal Norte to Portal Sur?"
 Example output: {"origin": "Portal Norte", "destination": "Portal Sur"}"""
