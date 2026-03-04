@@ -7,9 +7,14 @@ Builds a directed multigraph where:
 - Edge attributes store route_id and weight (stop count = 1 per edge in v1)
 """
 
-import pandas as pd
-import networkx as nx
 from pathlib import Path
+
+import networkx as nx
+import pandas as pd
+from networkx.algorithms.components import (
+    is_weakly_connected,
+    number_weakly_connected_components,
+)
 
 DATA_DIR = Path(__file__).parent.parent / "data" / "processed"
 
@@ -38,12 +43,17 @@ def build_graph() -> nx.MultiDiGraph:
     G = nx.MultiDiGraph()
 
     # Add all stations as nodes with zone metadata
-    station_meta = stations.set_index("Station_Name")[["Zone_ID", "Zone_Name"]].to_dict("index")
-    for station, meta in station_meta.items():
-        G.add_node(station, zone_id=meta["Zone_ID"], zone_name=meta["Zone_Name"])
+    seen_stations = set()
+    for row in stations.itertuples(index=False):
+        if row.Station_Name in seen_stations:
+            continue
+        G.add_node(row.Station_Name, zone_id=row.Zone_ID, zone_name=row.Zone_Name)
+        seen_stations.add(row.Station_Name)
 
     # Add edges from route stop sequences
-    for (route_id, direction), group in routes.groupby(["Route_ID", "Final_Destination"]):
+    for (route_id, direction), group in routes.groupby(
+        ["Route_ID", "Final_Destination"]
+    ):
         stops = group.sort_values("Stop_Order")["Station_Name"].tolist()
         for i in range(len(stops) - 1):
             G.add_edge(
@@ -59,10 +69,10 @@ def build_graph() -> nx.MultiDiGraph:
 
 def graph_summary(G: nx.MultiDiGraph) -> dict:
     """Return basic statistics about the graph."""
+    is_connected = is_weakly_connected(G) if G.number_of_nodes() > 0 else False
     return {
         "nodes": G.number_of_nodes(),
         "edges": G.number_of_edges(),
-        "is_connected": nx.is_weakly_connected(G),
-        "components": nx.number_weakly_connected_components(G),
+        "is_connected": is_connected,
+        "components": number_weakly_connected_components(G),
     }
-

@@ -9,11 +9,12 @@ Wraps the routing engine with an Anthropic API call that:
 Requires ANTHROPIC_API_KEY in .env
 """
 
-import os
 import json
-from dotenv import load_dotenv
+import os
+
 import anthropic
 import networkx as nx
+from dotenv import load_dotenv
 
 from src.routing import find_route, search_station
 
@@ -50,7 +51,10 @@ def parse_query(user_input: str) -> dict:
 def explain_route(result, user_input: str) -> str:
     """Use the LLM to explain a RouteResult in plain language."""
     if not result.found:
-        prompt = f"The user asked: '{user_input}'. The routing engine returned this error: {result.error}. Explain this helpfully in 1-2 sentences."
+        prompt = (
+            f"The user asked: '{user_input}'. The routing engine returned this error: "
+            f"{result.error}. Explain this helpfully in 1-2 sentences."
+        )
     else:
         route_info = {
             "origin": result.origin,
@@ -60,7 +64,11 @@ def explain_route(result, user_input: str) -> str:
             "transfers": result.transfers,
             "routes_used": result.routes_used,
         }
-        prompt = f"The user asked: '{user_input}'. Here is the route data: {json.dumps(route_info, ensure_ascii=False)}. Explain this route clearly in 2-3 sentences in the same language the user used."
+        prompt = (
+            f"The user asked: '{user_input}'. Here is the route data: "
+            f"{json.dumps(route_info, ensure_ascii=False)}. Explain this route clearly "
+            "in 2-3 sentences in the same language the user used."
+        )
 
     response = client.messages.create(
         model="claude-sonnet-4-6",
@@ -86,7 +94,10 @@ def natural_language_route(G: nx.MultiDiGraph, user_input: str) -> str:
     destination = parsed.get("destination")
 
     if not origin or not destination:
-        return "No pude identificar el origen o destino. Por favor intenta de nuevo con nombres de estaciones más específicos."
+        return (
+            "No pude identificar el origen o destino. "
+            "Por favor intenta de nuevo con nombres de estaciones más específicos."
+        )
 
     # Try fuzzy match if exact names not found
     if origin not in G.nodes:
@@ -94,14 +105,20 @@ def natural_language_route(G: nx.MultiDiGraph, user_input: str) -> str:
         if len(candidates) == 1:
             origin = candidates[0]
         elif len(candidates) > 1:
-            return f"Encontré varias estaciones similares a '{origin}': {', '.join(candidates)}. ¿Cuál es la correcta?"
+            return (
+                f"Encontré varias estaciones similares a '{origin}': "
+                f"{', '.join(candidates)}. ¿Cuál es la correcta?"
+            )
 
     if destination not in G.nodes:
         candidates = search_station(G, destination)
         if len(candidates) == 1:
             destination = candidates[0]
         elif len(candidates) > 1:
-            return f"Encontré varias estaciones similares a '{destination}': {', '.join(candidates)}. ¿Cuál es la correcta?"
+            return (
+                f"Encontré varias estaciones similares a '{destination}': "
+                f"{', '.join(candidates)}. ¿Cuál es la correcta?"
+            )
 
     result = find_route(G, origin, destination)
     return explain_route(result, user_input)
