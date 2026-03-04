@@ -14,6 +14,8 @@ python-dotenv==1.0.1
 
 # LLM
 anthropic==0.40.0
+groq==0.13.0
+openai==2.24.0
 
 # Testing
 pytest==8.3.4
