@@ -5,10 +5,13 @@ Uses Dijkstra's algorithm via NetworkX. Edge weights are stop counts (1 per edge
 Transfer points are handled implicitly — any station in multiple routes is a natural transfer.
 """
 
-import networkx as nx
 from dataclasses import dataclass
 from typing import Optional
+import unicodedata
 
+import networkx as nx
+from networkx.algorithms.shortest_paths.generic import shortest_path
+from networkx.exception import NetworkXNoPath
 
 @dataclass
 class RouteResult:
@@ -35,16 +38,22 @@ def find_route(G: nx.MultiDiGraph, origin: str, destination: str) -> RouteResult
         RouteResult with path details, transfer points, and routes used.
     """
     if origin not in G:
-        return RouteResult(origin, destination, [], 0, [], [], False, f"Station not found: {origin}")
+        return RouteResult(
+            origin, destination, [], 0, [], [], False, f"Station not found: {origin}"
+        )
     if destination not in G:
-        return RouteResult(origin, destination, [], 0, [], [], False, f"Station not found: {destination}")
+        return RouteResult(
+            origin, destination, [], 0, [], [], False, f"Station not found: {destination}",
+        )
     if origin == destination:
         return RouteResult(origin, destination, [origin], 0, [], [], True)
 
     try:
-        path = nx.shortest_path(G, source=origin, target=destination, weight="weight")
-    except nx.NetworkXNoPath:
-        return RouteResult(origin, destination, [], 0, [], [], False, "No path found between these stations.")
+        path = shortest_path(G, source=origin, target=destination, weight="weight")
+    except NetworkXNoPath:
+        return RouteResult(
+            origin, destination, [], 0, [], [], False, "No path found between these stations.",
+        )
 
     # Identify which routes are used along the path and where transfers occur
     routes_used = []
@@ -54,7 +63,6 @@ def find_route(G: nx.MultiDiGraph, origin: str, destination: str) -> RouteResult
     for i in range(len(path) - 1):
         u, v = path[i], path[i + 1]
         edge_data = G.get_edge_data(u, v)
-        # Get first available edge (multigraph may have multiple)
         edge = list(edge_data.values())[0]
         route_id = edge["route_id"]
 
@@ -75,10 +83,20 @@ def find_route(G: nx.MultiDiGraph, origin: str, destination: str) -> RouteResult
     )
 
 
+def normalize(text: str) -> str:
+    """Remove accents for fuzzy matching."""
+    return (
+        unicodedata.normalize("NFD", text)
+        .encode("ascii", "ignore")
+        .decode("utf-8")
+        .lower()
+    )
+
+
 def search_station(G: nx.MultiDiGraph, query: str) -> list[str]:
     """
-    Fuzzy station search. Returns station names containing the query string (case-insensitive).
-    Useful for the LLM layer to resolve approximate user input.
+    Fuzzy station search. Case and accent insensitive.
+    Returns station names containing the query string.
     """
-    query_lower = query.lower()
-    return [node for node in G.nodes if query_lower in node.lower()]
+    query_normalized = normalize(query)
+    return [node for node in G.nodes if query_normalized in normalize(node)]
